@@ -32,6 +32,7 @@ const Home = () => {
           dishAvailability: eachDish.dish_Availability,
           dishType: eachDish.dish_Type,
           addonCat: eachDish.addonCat,
+          quantity: 0,
         })),
       })),
     }))
@@ -42,15 +43,6 @@ const Home = () => {
     0,
   )
 
-  const addQuantity = array =>
-    array[0].tableMenuList.map(eachObject => ({
-      ...eachObject,
-      categoryDishes: eachObject.categoryDishes.map(each => ({
-        ...each,
-        quantity: 0,
-      })),
-    }))
-
   useEffect(() => {
     const getApiResponse = async () => {
       const api =
@@ -58,15 +50,10 @@ const Home = () => {
       const apiResponse = await fetch(api)
       const data = await apiResponse.json()
       const result = updated(data)
-      const added = addQuantity(result)
-      setTableMenuList(added)
+      setTableMenuList(result[0].tableMenuList)
     }
     getApiResponse()
   }, [])
-
-  const passACtiveBtn = value => {
-    setActiveCategory(value)
-  }
 
   const passDecreseId = dishId => {
     const result = tableMenuList.map(eachObject => ({
@@ -95,20 +82,46 @@ const Home = () => {
     setTableMenuList(result)
   }
 
+  const passACtiveBtn = active => {
+    setActiveCategory(active)
+  }
+
   const categoryList = tableMenuList.map(each => ({
     menuCategory: each.menuCategory,
     id: each.menuCategoryId,
   }))
 
+  const renderCategories = () => {
+    categoryList.map(each => {
+      const onClickToChangeBtn = () => {
+        setActiveCategory(each.menuCategory)
+      }
+
+      return (
+        <li
+          className={`${each.menuCategory === activeCategory && 'border'} li`}
+          key={each.id}
+          onClick={onClickToChangeBtn}
+        >
+          <button type="button" className="btn">
+            {each.menuCategory}
+          </button>
+        </li>
+      )
+    })
+  }
+
   return (
     <>
       <Header total={total} />
       <hr />
+      <ul className="category-btns-ul-container">{renderCategories()}</ul>
       <CategoryBtnsList
         categoryList={categoryList}
         passACtiveBtn={passACtiveBtn}
         activeCategory={activeCategory}
       />
+
       <ul className="ul-dishes">
         {tableMenuList
           .filter(each => each.menuCategory === activeCategory)

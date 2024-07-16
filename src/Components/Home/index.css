@@ -5,3 +5,29 @@ hr {
   list-style-type: none;
   padding: 10px;
 }
+
+.category-btns-ul-container {
+  display: flex;
+  padding: 0px 10px 0px 10px;
+  list-style-type: none;
+}
+.border {
+  border-bottom: 2px solid brown;
+}
+.li {
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 10px 0px 10px;
+  border-bottom: 2px solid none;
+  padding: 15px 10px 15px 10px;
+}
+.btn {
+  background-color: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+.heading {
+  font-size: 20px;
+}

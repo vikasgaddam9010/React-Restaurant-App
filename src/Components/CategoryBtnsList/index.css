@@ -3,21 +3,25 @@
   padding: 0px 10px 0px 10px;
   list-style-type: none;
 }
-.border {
-  border-bottom: 2px solid brown;
-}
 .li {
   display: flex;
   font-size: 20px;
   justify-content: center;
   align-items: center;
-  min-width: 250px;
   margin: 0px 10px 0px 10px;
+  border-bottom: 2px solid transparent;
 }
+.border {
+  border-bottom: 2px solid brown;
+}
+
 .btn {
   background-color: transparent;
-  border: none;
   font-size: 20px;
-  padding: 15px 10px 15px 10px;
   cursor: pointer;
+  border: none;
+  padding: 5px 20px 5px 20px;
+}
+.heading {
+  font-size: 20px;
 }

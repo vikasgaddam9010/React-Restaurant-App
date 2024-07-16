@@ -4,30 +4,30 @@ const CategoryBtnsList = props => {
   const {categoryList, activeCategory, passACtiveBtn} = props
 
   return (
-    <>
-      <ul className="category-btns-ul-container">
-        {categoryList.map(each => {
-          const onClickToChangeBtn = () => {
-            passACtiveBtn(each.menuCategory)
-          }
+    <ul className="category-btns-ul-container">
+      {categoryList.map(eachCategory => {
+        const onClickToChangeBtn = () => {
+          passACtiveBtn(eachCategory.menuCategory)
+        }
 
-          return (
-            <li
-              className={`${
-                each.menuCategory === activeCategory ? 'border' : null
-              } li`}
-              key={each.id}
-              onClick={onClickToChangeBtn}
-            >
-              <button type="button" className="btn">
-                {each.menuCategory}
-              </button>
-            </li>
-          )
-        })}
-      </ul>
-    </>
+        return (
+          <li
+            className={`${
+              eachCategory.menuCategory === activeCategory && 'border'
+            } li`}
+            key={eachCategory.id}
+            onClick={onClickToChangeBtn}
+          >
+            <button type="button" className="btn">
+              {eachCategory.menuCategory}
+            </button>
+          </li>
+        )
+      })}
+    </ul>
   )
 }
 
 export default CategoryBtnsList
+/*
+ */

@@ -59,8 +59,9 @@ const DisplayDishes = props => {
               </button>
             </div>
           ) : (
-            <p>Not Available</p>
+            <p className="not-available">Not Available</p>
           )}
+
           {addonCat.length > 0 && (
             <p className="coust-color">Customizations available</p>
           )}
