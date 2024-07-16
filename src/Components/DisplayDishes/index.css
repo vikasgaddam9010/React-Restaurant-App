@@ -1,0 +1,107 @@
+.box {
+  background-color: rgb(217, 233, 217);
+  margin-right: 10px;
+  height: 30px;
+  width: 30px;
+  border: 1px solid green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.circle {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: green;
+}
+.box-black {
+  background-color: #dfd9d9;
+  margin-right: 10px;
+  height: 30px;
+  width: 30px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.circle-black {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: black;
+}
+.box-red {
+  background-color: rgb(250, 224, 224);
+  margin-right: 10px;
+  height: 30px;
+  width: 30px;
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.circle-red {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.li-dishes {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  margin-bottom: 10px;
+}
+.img-and-description {
+  display: flex;
+}
+.img-calories {
+  width: 20%;
+  justify-content: space-between;
+  align-items: center;
+}
+.h1-dish-nmae {
+  font-size: 20px;
+  margin: 0px;
+}
+img {
+  width: 100px;
+  height: 150px;
+  border-radius: 10px;
+}
+.coust-color {
+  color: blue;
+}
+.calories {
+  color: orange;
+  font-weight: 500;
+}
+.increment-decrement-btns {
+  width: 150px;
+  background-color: green;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px 10px 5px 10px;
+  border-radius: 25px;
+}
+.quantity {
+  color: white;
+  font-size: 20px;
+  margin: 0px;
+}
+.btns {
+  border: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 26px;
+}
+
+.dish-details {
+  width: 60%;
+}
