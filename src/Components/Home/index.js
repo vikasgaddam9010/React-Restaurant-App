@@ -1,10 +1,14 @@
 import './index.css'
 import {useState, useEffect} from 'react'
+import Loader from 'react-loader-spinner'
+
 import Header from '../Header'
 import DisplayDishes from '../DisplayDishes'
 import CategoryBtnsList from '../CategoryBtnsList'
 
 const Home = () => {
+  const [isProgress, setProgress] = useState(true)
+  const [restaurantName, setFullObject] = useState('')
   const [tableMenuList, setTableMenuList] = useState([])
   const [activeCategory, setActiveCategory] = useState('Salads and Soup')
 
@@ -49,8 +53,10 @@ const Home = () => {
         'https://apis2.ccbp.in/restaurant-app/restaurant-menu-list-details'
       const apiResponse = await fetch(api)
       const data = await apiResponse.json()
+      setFullObject(data[0].restaurant_name)
       const result = updated(data)
       setTableMenuList(result[0].tableMenuList)
+      setProgress(false)
     }
     getApiResponse()
   }, [])
@@ -91,51 +97,48 @@ const Home = () => {
     id: each.menuCategoryId,
   }))
 
-  const renderCategories = () => {
-    categoryList.map(each => {
-      const onClickToChangeBtn = () => {
-        setActiveCategory(each.menuCategory)
-      }
-
-      return (
-        <li
-          className={`${each.menuCategory === activeCategory && 'border'} li`}
-          key={each.id}
-          onClick={onClickToChangeBtn}
-        >
-          <button type="button" className="btn">
-            {each.menuCategory}
-          </button>
-        </li>
-      )
-    })
-  }
+  const renderLoaderingView = () => (
+    <div className="loader-container">
+      <Loader type="ThreeDots" color="#0b69ff" height="150" width="150" />
+    </div>
+  )
 
   return (
     <>
-      <Header total={total} />
-      <hr />
-      <ul className="category-btns-ul-container">{renderCategories()}</ul>
-      <CategoryBtnsList
-        categoryList={categoryList}
-        passACtiveBtn={passACtiveBtn}
-        activeCategory={activeCategory}
+      <Header
+        restaurantName={restaurantName}
+        isProgress={isProgress}
+        total={total}
       />
+      <hr />
+      {isProgress ? (
+        renderLoaderingView()
+      ) : (
+        <>
+          <ul className="category-btns-ul-container">
+            <CategoryBtnsList
+              categoryList={categoryList}
+              passACtiveBtn={passACtiveBtn}
+              activeCategory={activeCategory}
+            />
+          </ul>
 
-      <ul className="ul-dishes">
-        {tableMenuList
-          .filter(each => each.menuCategory === activeCategory)
-          .map(each =>
-            each.categoryDishes.map(eachItem => (
-              <DisplayDishes
-                key={eachItem.dishId}
-                each={eachItem}
-                passDecreseId={passDecreseId}
-                passIncreaseId={passIncreaseId}
-              />
-            )),
-          )}
-      </ul>
+          <ul className="ul-dishes">
+            {tableMenuList
+              .filter(each => each.menuCategory === activeCategory)
+              .map(each =>
+                each.categoryDishes.map(eachItem => (
+                  <DisplayDishes
+                    key={eachItem.dishId}
+                    each={eachItem}
+                    passDecreseId={passDecreseId}
+                    passIncreaseId={passIncreaseId}
+                  />
+                )),
+              )}
+          </ul>
+        </>
+      )}
     </>
   )
 }

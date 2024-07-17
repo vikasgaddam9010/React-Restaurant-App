@@ -1,10 +1,19 @@
 import './index.css'
 
+import Loader from 'react-loader-spinner'
+
 const Header = props => {
-  const {total} = props
+  const {total, restaurantName, isProgress} = props
+
+  const renderLoaderingView = () => (
+    <div className="loader-container">
+      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    </div>
+  )
+
   return (
     <div className="header-container">
-      <h1>UNI Resto Cafe</h1>
+      {isProgress ? renderLoaderingView() : <h1>{restaurantName}</h1>}
       <div className="d-flex">
         <p>My Orders</p>
         <svg
