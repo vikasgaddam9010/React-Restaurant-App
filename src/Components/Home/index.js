@@ -7,10 +7,10 @@ import DisplayDishes from '../DisplayDishes'
 import CategoryBtnsList from '../CategoryBtnsList'
 
 const Home = () => {
+  const [activeCategory, setActiveCategory] = useState('Salads and Soup')
   const [isProgress, setProgress] = useState(true)
   const [restaurantName, setFullObject] = useState('')
   const [tableMenuList, setTableMenuList] = useState([])
-  const [activeCategory, setActiveCategory] = useState('Salads and Soup')
 
   const updated = data =>
     data.map(each => ({
